@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 
 /**
  *
@@ -27,7 +28,8 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
 
     @PersistenceContext(unitName = "MyCloudProject-ejbPU")
     private EntityManager em;
-    
+    @EJB 
+    UserdataFacadeLocal obj;
     
      /*@Temporal(TemporalType.TIMESTAMP)
     private java.util.Date myDate;*/
@@ -44,7 +46,7 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
     @Override
     public int transact(int userIdFrom, int userIdTo, double amt) {
     
-    if((String.valueOf(userIdFrom) != null || userIdFrom != 0) && (String.valueOf(userIdTo)!=null ||userIdTo !=0) && (amt !=0.0 ||String.valueOf(amt) !=null))
+    if((checkuserid(userIdFrom) ) && (checkuserid(userIdTo))&&(String.valueOf(userIdFrom) != null || userIdFrom != 0) && (String.valueOf(userIdTo)!=null ||userIdTo !=0) && (amt !=0.0 ||String.valueOf(amt) !=null))
     {
     TransactionTable tb=new TransactionTable();
     System.out.println("my details "+userIdFrom+"  "+userIdTo+"  "+amt);
@@ -90,7 +92,16 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
         return 0;
     }
     }
-
-    
+boolean checkuserid(int id)
+{
+        
+    ArrayList<Userdata> userlist=obj.getAllusers();
+    for(Userdata temp:userlist)
+    {
+        if(id == temp.getUserId())
+            return true;
+    }
+ return false;   
+}
     
 }

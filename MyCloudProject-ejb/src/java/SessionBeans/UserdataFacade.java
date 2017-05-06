@@ -107,4 +107,9 @@ public class UserdataFacade extends AbstractFacade<Userdata> implements Userdata
         }
             return "Default";
         }
+        
+        public ArrayList<Userdata> getAllusers()
+        {
+            return new ArrayList(findAll());
+        }
 }

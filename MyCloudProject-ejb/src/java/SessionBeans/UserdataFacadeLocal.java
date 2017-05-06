@@ -6,6 +6,7 @@
 package SessionBeans;
 
 import EntityBeans.Userdata;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -35,5 +36,5 @@ public interface UserdataFacadeLocal {
           public String getVerificationType(String id);
             public int getVerificationNumber(String id);
             public String getname(String id);
-
+public ArrayList<Userdata> getAllusers();
 }
