@@ -8,6 +8,7 @@ package Servlets;
 import SessionBeans.TransactionTableFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javafx.scene.control.Alert;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,16 @@ public class Transaction extends HttpServlet {
             out.println("<title>Servlet Transaction</title>");            
             out.println("</head>");
             out.println("<body>");
-            Integer id=Integer.parseInt(request.getParameter("userId"));
+            if(request.getParameter("accountId") == null)
+            {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Account Number Absent');");
+                out.println("</script>");
+            }
+            else
+            {
+            Integer id=Integer.parseInt(request.getParameter("accountId"));
+            //Integer id=Integer.parseInt(request.getParameter("userId"));
             Double amt=Double.parseDouble(request.getParameter("amount"));
             int currentuserId=Integer.parseInt((String)request.getSession().getAttribute("userId"));
             System.out.println("my current user id "+currentuserId+"  "+id+"  "+amt);
@@ -42,6 +52,7 @@ public class Transaction extends HttpServlet {
             out.println("<h1>Servlet Transaction at " + result + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            }
         }
     }
 

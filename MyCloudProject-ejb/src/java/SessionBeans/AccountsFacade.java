@@ -29,4 +29,15 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
         super(Accounts.class);
     }
     
+    public int createNewAccount(int userId,String accountType,Double initialAmount,int pin)
+    {
+        Accounts ac=new Accounts();
+        ac.setUserId(userId);
+        ac.setAmount(initialAmount);
+        ac.setLoan(null);
+        ac.setPin(pin);
+        ac.setAccountType(accountType);
+        create(ac);
+        return 1;
+    }
 }

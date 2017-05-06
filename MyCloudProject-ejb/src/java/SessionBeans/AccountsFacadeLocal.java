@@ -29,5 +29,6 @@ public interface AccountsFacadeLocal {
     List<Accounts> findRange(int[] range);
 
     int count();
+    public int createNewAccount(int userId,String accountType,Double initialAmount,int pin);
     
 }
