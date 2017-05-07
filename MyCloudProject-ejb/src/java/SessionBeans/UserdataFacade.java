@@ -33,7 +33,7 @@ public class UserdataFacade extends AbstractFacade<Userdata> implements Userdata
     {
 
         Boolean flag=false;
-         ArrayList<Userdata> userlist=new ArrayList(findAll());
+        ArrayList<Userdata> userlist=new ArrayList(findAll());
         for(Userdata ud:userlist)
         {
             Integer userid=Integer.parseInt(userId);

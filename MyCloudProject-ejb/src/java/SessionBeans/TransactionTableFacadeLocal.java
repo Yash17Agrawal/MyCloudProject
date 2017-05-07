@@ -6,6 +6,7 @@
 package SessionBeans;
 
 import EntityBeans.TransactionTable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,5 +32,5 @@ public interface TransactionTableFacadeLocal {
     int count();
     
     public int transact(int userIdFrom, int userIdTo, double amt);
-    
+    public ArrayList<TransactionTable> trasactionHistory(int account_id);
 }

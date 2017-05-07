@@ -31,6 +31,12 @@
 			
 			<li ><a data-toggle="modal" data-target="#popUpTransferMoney" style="cursor: pointer;">Transfer Money</a></li>
 			<li ><a data-toggle="modal" data-target="#popUpCreateAccount" style="cursor: pointer;">Create Account</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toogle" data-toggle="dropdown">My Accounts</a>
+                            <ul class="dropdown-menu">
+				<li ><a href="http://localhost:24807/MyCloudProject-war/Profile">Settings</a></li>				
+                            </ul>
+                        </li>
 
 			
 		</ul>

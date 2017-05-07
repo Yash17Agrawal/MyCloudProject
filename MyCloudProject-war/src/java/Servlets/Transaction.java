@@ -23,7 +23,7 @@ public class Transaction extends HttpServlet {
 
         @EJB
         TransactionTableFacadeLocal obj;     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
@@ -46,9 +46,9 @@ public class Transaction extends HttpServlet {
             Integer id=Integer.parseInt(request.getParameter("accountId"));
             //Integer id=Integer.parseInt(request.getParameter("userId"));
             Double amt=Double.parseDouble(request.getParameter("amount"));
-            int currentuserId=Integer.parseInt((String)request.getSession().getAttribute("userId"));
-            System.out.println("my current user id "+currentuserId+"  "+id+"  "+amt);
-            int result=obj.transact(currentuserId,id,amt);
+            //int currentuserId=Integer.parseInt((String)request.getSession().getAttribute("userId"));
+            int currentaccountId=Integer.parseInt((String)request.getSession().getAttribute("userId"));
+            int result=obj.transact(currentaccountId,id,amt);
             out.println("<h1>Servlet Transaction at " + result + "</h1>");
             out.println("</body>");
             out.println("</html>");

@@ -92,16 +92,28 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
         return 0;
     }
     }
-boolean checkuserid(int id)
-{
-        
-    ArrayList<Userdata> userlist=obj.getAllusers();
-    for(Userdata temp:userlist)
+    boolean checkuserid(int id)
     {
-        if(id == temp.getUserId())
-            return true;
+
+        ArrayList<Userdata> userlist=obj.getAllusers();
+        for(Userdata temp:userlist)
+        {
+            if(id == temp.getUserId())
+                return true;
+        }
+     return false;   
     }
- return false;   
-}
-    
+    public ArrayList<TransactionTable> trasactionHistory(int account_id)
+    {
+        ArrayList<TransactionTable> transactionlist=new ArrayList(findAll());
+        ArrayList<TransactionTable> myresult=new ArrayList<>();
+        for(TransactionTable obj:transactionlist)
+        {
+            if(account_id == obj.getUserIdFrom() || account_id == obj.getUserIdTo())
+            {
+                myresult.add(obj);
+            }
+        }
+        return myresult;
+    }
 }
