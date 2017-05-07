@@ -6,6 +6,7 @@
 package SessionBeans;
 
 import EntityBeans.Accounts;
+import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -50,4 +51,16 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
         /*}*/
         return 1;
     }
+     public Integer getAccountnumber(int userid)
+        {
+            ArrayList<Accounts> obj=new ArrayList<>(findAll());
+            for(Accounts temp:obj)
+            {
+                if(userid == temp.getUserId())
+                {
+                    return temp.getAccountId();
+                }
+            }
+            return null;
+        }
 }

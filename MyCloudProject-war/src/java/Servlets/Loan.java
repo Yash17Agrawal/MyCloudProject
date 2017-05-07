@@ -5,10 +5,9 @@
  */
 package Servlets;
 
-import SessionBeans.TransactionTableFacadeLocal;
+import SessionBeans.LoanTableFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javafx.scene.control.Alert;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,32 +18,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author code_eagle
  */
-public class Transaction extends HttpServlet {
+public class Loan extends HttpServlet {
 
-        @EJB
-        TransactionTableFacadeLocal obj;     
-        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   @EJB
+   LoanTableFacadeLocal obj;
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Transaction</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            
-            Integer id=Integer.parseInt((String)request.getSession().getAttribute("userId"));
-            Double amt=Double.parseDouble(request.getParameter("amount"));
-            int currentaccountId=(Integer)request.getSession().getAttribute("accountNumber");
-            int result=obj.transact(currentaccountId,id,amt);
-            System.out.println( currentaccountId+" "+ id+ " "+ amt);
-            out.println("<h1>Servlet Transaction at " + result + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+      
+        Double amount=Double.parseDouble(request.getParameter("principalAmount"));
+//        System.out.println(request.getParameter("time").substring(0,request.getParameter("time").indexOf(" ")));
+        Double time=Double.parseDouble(request.getParameter("time"));
+        double rate=Double.parseDouble(request.getParameter("rate"));
+        int userId=Integer.parseInt((String)request.getSession().getAttribute("userId"));
+        int result=obj.takeLoan(userId,amount,time,rate);
+        
+        if(result==1)
+            System.out.println("Loan Success");
+        else
+            System.out.println("Loan Failure");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

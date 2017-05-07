@@ -8,6 +8,7 @@ package Servlets;
 
          
 
+import SessionBeans.AccountsFacadeLocal;
 import SessionBeans.UserdataFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,6 +26,8 @@ import javax.servlet.http.HttpSession;
 public class LoginSingupNew extends HttpServlet {
             @EJB
             UserdataFacadeLocal obj;
+            @EJB 
+            AccountsFacadeLocal accobj;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,12 +41,15 @@ public class LoginSingupNew extends HttpServlet {
             String userId=request.getParameter("userId");
             String password=request.getParameter("password");
             int result=obj.login(userId,password);
+            
             if(result==1)
             {
                 //Successful Login
+                int accountnumber=accobj.getAccountnumber(Integer.parseInt(userId));
                 HttpSession session=request.getSession();
                 session.setAttribute("userId",userId);
-               // response.sendRedirect("http://localhost:24807/MyCloudProject-war/LoginSignup/AfterLogin.jsp");
+                session.setAttribute("accountNumber",accountnumber);
+                // response.sendRedirect("http://localhost:24807/MyCloudProject-war/LoginSignup/AfterLogin.jsp");
 
                response.sendRedirect("http://localhost:24807/MyCloudProject-war/home.jsp");
             }

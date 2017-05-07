@@ -5,8 +5,10 @@
  */
 package Servlets;
 
+import SessionBeans.TransactionTableFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,19 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author utkarsh
+ * @author code_eagle
  */
-public class Details extends HttpServlet {
+public class TransactionHistory extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    @EJB
+    TransactionTableFacadeLocal obj;
+            
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -35,10 +31,11 @@ public class Details extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Details</title>");            
+            out.println("<title>Servlet TransactionHistory</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Details at " + request.getContextPath() + "</h1>");
+            int id=Integer.parseInt((String)request.getSession().getAttribute("userId"));
+            out.println("<h1>Servlet TransactionHistory at " + obj.trasactionHistory(id) + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

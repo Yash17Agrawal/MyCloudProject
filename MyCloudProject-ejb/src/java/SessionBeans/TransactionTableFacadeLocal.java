@@ -33,4 +33,5 @@ public interface TransactionTableFacadeLocal {
     
     public int transact(int userIdFrom, int userIdTo, double amt);
     public ArrayList<TransactionTable> trasactionHistory(int account_id);
+    public int getTotalentries();
 }

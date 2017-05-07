@@ -46,7 +46,12 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
     @Override
     public int transact(int userIdFrom, int userIdTo, double amt) {
     
-    if((checkuserid(userIdFrom) ) && (checkuserid(userIdTo))&&(String.valueOf(userIdFrom) != null || userIdFrom != 0) && (String.valueOf(userIdTo)!=null ||userIdTo !=0) && (amt !=0.0 ||String.valueOf(amt) !=null))
+        boolean loancheck;
+        if(userIdFrom == -1)
+            loancheck=true;
+        else
+            loancheck=checkuserid(userIdFrom);
+    if((loancheck) && (checkuserid(userIdTo)) && (amt !=0.0 ||String.valueOf(amt) !=null))
     {
     TransactionTable tb=new TransactionTable();
     System.out.println("my details "+userIdFrom+"  "+userIdTo+"  "+amt);
@@ -94,7 +99,7 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
     }
     boolean checkuserid(int id)
     {
-
+        
         ArrayList<Userdata> userlist=obj.getAllusers();
         for(Userdata temp:userlist)
         {
@@ -115,5 +120,9 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
             }
         }
         return myresult;
+    }
+    public int getTotalentries()
+    {
+        return count();
     }
 }

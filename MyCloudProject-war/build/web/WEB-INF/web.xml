@@ -20,6 +20,14 @@
         <servlet-name>createAccount</servlet-name>
         <servlet-class>Servlets.createAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TransactionHistory</servlet-name>
+        <servlet-class>Servlets.TransactionHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Loan</servlet-name>
+        <servlet-class>Servlets.Loan</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSingupNew</servlet-name>
         <url-pattern>/LoginSingupNew</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>createAccount</servlet-name>
         <url-pattern>/createAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TransactionHistory</servlet-name>
+        <url-pattern>/TransactionHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Loan</servlet-name>
+        <url-pattern>/Loan</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

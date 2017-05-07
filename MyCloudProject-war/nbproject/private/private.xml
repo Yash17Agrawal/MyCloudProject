@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/programs/MyCloudProject/MyCloudProject-war/src/java/Servlets/createAccount.java</file>
-            <file>file:/F:/programs/MyCloudProject/MyCloudProject-war/web/home.html</file>
+            <file>file:/F:/programs/MyCloudProject/MyCloudProject-war/src/java/Servlets/Loan.java</file>
+            <file>file:/F:/programs/MyCloudProject/MyCloudProject-war/src/java/Servlets/Transaction.java</file>
+            <file>file:/F:/programs/MyCloudProject/MyCloudProject-war/web/home.jsp</file>
         </group>
     </open-files>
 </project-private>

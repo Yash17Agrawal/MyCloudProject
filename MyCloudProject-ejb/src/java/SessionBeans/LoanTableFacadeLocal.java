@@ -29,5 +29,5 @@ public interface LoanTableFacadeLocal {
     List<LoanTable> findRange(int[] range);
 
     int count();
-    
+    public int takeLoan(int userId,Double amount,Double time,Double rate);
 }

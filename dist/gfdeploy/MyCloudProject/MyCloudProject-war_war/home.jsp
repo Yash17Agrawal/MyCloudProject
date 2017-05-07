@@ -1,3 +1,4 @@
+<%@page import="SessionBeans.AccountsFacadeLocal"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,15 +33,9 @@
 			<li ><a data-toggle="modal" data-target="#popUpTransferMoney" style="cursor: pointer;">Transfer Money</a></li>
 			<li ><a data-toggle="modal" data-target="#popUpCreateAccount" style="cursor: pointer;">Create Account</a></li>
                         <li ><a data-toggle="modal" data-target="#popUpApplyForLoan" style="cursor: pointer;">Apply for loan</a></li>
+                        <li ><a data-toggle="modal"  style="cursor: pointer;">
+                       </a></li>
 
-                        <li class="dropdown">
-                            <a class="dropdown-toogle" data-toggle="dropdown">My Accounts</a>
-                            <ul class="dropdown-menu">
-				<li ><a href="http://localhost:24807/MyCloudProject-war/Profile">Settings</a></li>				
-                            </ul>
-                        </li>
-
-			
 		</ul>
 			<!--dripdown menu-->
 			<ul class="nav navbar-nav navbar-right">
@@ -49,7 +44,7 @@
 					<a href="#" class="dropdown-toogle" data-toggle="dropdown">My Profile <span class="caret"> </span></a>
 					<ul class="dropdown-menu">
 						<li ><a href="http://localhost:24807/MyCloudProject-war/Profile">Settings</a></li>
-						<li ><a href="#">View History</a></li>
+						<li ><a href="http://localhost:24807/MyCloudProject-war/TransactionHistory">View History</a></li>
 						<li ><a href="http://localhost:24807/MyCloudProject-war/Logout">Logout</a></li>					
 					</ul>
 				</li>	
@@ -112,36 +107,36 @@
 
 				<!--body-->
 				<div class="modal-body">
-                                    <form role="form" action="######################" method="post">
+                                    <form role="form" action="http://localhost:24807/MyCloudProject-war/Loan" method="post">
 				
 						
-
+                                            <!--
 						<div class="form-group">
 							<input type="text" name="accountNumber" class="form-control" placeholder="Enter Account Number">
 						</div>						
-
+                                                -->
 						<div class="form-group">
 							<input type="number" name="principalAmount" class="form-control" placeholder="Enter your principal amount">
 						</div>		
 
 						<p>Select the rate of interest</p>
 						<div class="radio">
-  							<label><input type="radio" name="optradio">7.2% (change with market rates)</label>
+  							<label><input type="radio" name="rate" value="7.2">7.2% (change with market rates)</label>
 						</div>
 						<div class="radio">
-  							<label><input type="radio" name="optradio">8.3% (fixed)</label>
+  							<label><input type="radio" name="rate" value="8.3">8.3% (fixed)</label>
 						</div>
 						
 
 						<p>Select time period</p>
 						<div class="radio">
-  							<label><input type="radio" name="optradio1">2 years</label>
+  							<label><input type="radio" name="time" value="2">2 years</label>
 						</div>
 						<div class="radio">
-  							<label><input type="radio" name="optradio1">5 years</label>
+  							<label><input type="radio" name="time" value="5">5 years</label>
 						</div>
 						<div class="radio">
-  							<label><input type="radio" name="optradio1">7 years</label>
+  							<label><input type="radio" name="time" value="7">7 years</label>
 						</div>
 
 				<div class="modal-footer">

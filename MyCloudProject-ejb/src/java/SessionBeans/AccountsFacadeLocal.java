@@ -30,5 +30,5 @@ public interface AccountsFacadeLocal {
 
     int count();
     public int createNewAccount(int userId,String accountType,Double initialAmount,int pin);
-    
+    public Integer getAccountnumber(int userid);
 }

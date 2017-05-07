@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,27 +37,45 @@ public class LoanTable implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "loan_id")
     private Integer loanId;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "transaction_id")
-    private Integer transactionId;
+    private int transactionId;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "account_id")
-    private Integer accountId;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private int accountId;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "rate")
-    private Double rate;
+    private double rate;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "principal")
-    private Double principal;
+    private double principal;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "duration")
-    private Double duration;
+    private double duration;
 
     public LoanTable() {
     }
 
     public LoanTable(Integer loanId) {
         this.loanId = loanId;
+    }
+
+    public LoanTable(Integer loanId, int transactionId, int accountId, double rate, double principal, double duration) {
+        this.loanId = loanId;
+        this.transactionId = transactionId;
+        this.accountId = accountId;
+        this.rate = rate;
+        this.principal = principal;
+        this.duration = duration;
     }
 
     public Integer getLoanId() {
@@ -66,43 +86,43 @@ public class LoanTable implements Serializable {
         this.loanId = loanId;
     }
 
-    public Integer getTransactionId() {
+    public int getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(Integer transactionId) {
+    public void setTransactionId(int transactionId) {
         this.transactionId = transactionId;
     }
 
-    public Integer getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
 
-    public Double getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(Double rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
-    public Double getPrincipal() {
+    public double getPrincipal() {
         return principal;
     }
 
-    public void setPrincipal(Double principal) {
+    public void setPrincipal(double principal) {
         this.principal = principal;
     }
 
-    public Double getDuration() {
+    public double getDuration() {
         return duration;
     }
 
-    public void setDuration(Double duration) {
+    public void setDuration(double duration) {
         this.duration = duration;
     }
 

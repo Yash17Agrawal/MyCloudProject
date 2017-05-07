@@ -6,6 +6,7 @@
 package SessionBeans;
 
 import EntityBeans.LoanTable;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +21,9 @@ public class LoanTableFacade extends AbstractFacade<LoanTable> implements LoanTa
     @PersistenceContext(unitName = "MyCloudProject-ejbPU")
     private EntityManager em;
 
+    @EJB
+    TransactionTableFacadeLocal transactionObj;
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -28,5 +32,17 @@ public class LoanTableFacade extends AbstractFacade<LoanTable> implements LoanTa
     public LoanTableFacade() {
         super(LoanTable.class);
     }
-    
+    public int takeLoan(int userId,Double amount,Double time,Double rate)
+    {
+        //-1 is denoting Bank itself for loan purposes
+        LoanTable obj=new LoanTable();
+        transactionObj.transact(-1, userId, amount);
+        obj.setTransactionId(transactionObj.getTotalentries());
+        obj.setAccountId(userId);
+        obj.setDuration(time);
+        obj.setPrincipal(amount);
+        obj.setRate(rate);
+        create(obj);
+        return 1;
+    }
 }
