@@ -45,7 +45,7 @@ public class LoginSingupNew extends HttpServlet {
                 session.setAttribute("userId",userId);
                // response.sendRedirect("http://localhost:24807/MyCloudProject-war/LoginSignup/AfterLogin.jsp");
 
-               response.sendRedirect("http://localhost:24807/MyCloudProject-war/home.html");
+               response.sendRedirect("http://localhost:24807/MyCloudProject-war/home.jsp");
             }
             else
             {
@@ -75,7 +75,7 @@ public class LoginSingupNew extends HttpServlet {
                      HttpSession session=request.getSession();
                 session.setAttribute("userId",result);*/
               // response.sendRedirect("http://localhost:24807/MyCloudProject-war/LoginSignup/SuccessSignup.jsp");
-                response.sendRedirect("http://localhost:24807/MyCloudProject-war/home.html");
+                response.sendRedirect("http://localhost:24807/MyCloudProject-war/home.jsp");
                 }
                else
                 {
