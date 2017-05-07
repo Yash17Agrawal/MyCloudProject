@@ -77,10 +77,6 @@ public class LoginSingupNew extends HttpServlet {
                 int result=obj.signup(username, password, verification_type, verification_number, security_question, security_answer);
                 if(result==1)
                 {
-                    /*int userId=obj.login("1", password);
-                     HttpSession session=request.getSession();
-                session.setAttribute("userId",result);*/
-              // response.sendRedirect("http://localhost:24807/MyCloudProject-war/LoginSignup/SuccessSignup.jsp");
                 response.sendRedirect("http://localhost:24807/MyCloudProject-war/home.jsp");
                 }
                else

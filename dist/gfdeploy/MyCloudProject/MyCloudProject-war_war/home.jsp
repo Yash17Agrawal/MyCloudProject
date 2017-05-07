@@ -33,7 +33,7 @@
 			<li ><a data-toggle="modal" data-target="#popUpTransferMoney" style="cursor: pointer;">Transfer Money</a></li>
 			<li ><a data-toggle="modal" data-target="#popUpCreateAccount" style="cursor: pointer;">Create Account</a></li>
                         <li ><a data-toggle="modal" data-target="#popUpApplyForLoan" style="cursor: pointer;">Apply for loan</a></li>
-                        <li ><a data-toggle="modal"  style="cursor: pointer;">
+                        <li ><a data-toggle="modal"  style="cursor: pointer;"><%= session.getAttribute("accountNumber") %>
                        </a></li>
 
 		</ul>
