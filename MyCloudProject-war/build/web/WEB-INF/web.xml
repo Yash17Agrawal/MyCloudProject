@@ -16,6 +16,10 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>Servlets.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createAccount</servlet-name>
+        <servlet-class>Servlets.createAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSingupNew</servlet-name>
         <url-pattern>/LoginSingupNew</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createAccount</servlet-name>
+        <url-pattern>/createAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

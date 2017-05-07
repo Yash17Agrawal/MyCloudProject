@@ -22,7 +22,7 @@
 	
 	<!--logo-->
 	<div class="navbar-header">
-	<a class="navbar-brand" style="cursor: pointer;">My Bank</a>
+	<a href="http://localhost:24807/MyCloudProject-war/contactus.html" class="navbar-brand" style="cursor: pointer;">My Bank</a>
 	</div>
 
 	<!--nav items-->
@@ -30,13 +30,13 @@
 		<ul class="nav navbar-nav">
 			
 			<li ><a data-toggle="modal" data-target="#popUpTransferMoney" style="cursor: pointer;">Transfer Money</a></li>
-			<li ><a data-toggle="modal" data-target="#popUpTransferMoney" style="cursor: pointer;">Create Account</a></li>
+			<li ><a data-toggle="modal" data-target="#popUpCreateAccount" style="cursor: pointer;">Create Account</a></li>
 
 			
 		</ul>
 			<!--dripdown menu-->
 			<ul class="nav navbar-nav navbar-right">
-			<li ><a href="#">Contact Us</a></li>
+			<li ><a href="http://localhost:24807/MyCloudProject-war/contactus.html">Contact Us</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toogle" data-toggle="dropdown">My Profile <span class="caret"> </span></a>
 					<ul class="dropdown-menu">
@@ -83,6 +83,46 @@
 				</div>
 	
 
+					</form>
+				</div>
+
+
+				<!--footer-->
+			
+			</div>
+		</div>
+		
+	</div>
+    
+<div class="modal fade" id="popUpCreateAccount">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!--header-->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title">Fill the New Account details.</h2>
+				</div>
+
+				<!--body-->
+				<div class="modal-body">
+                                    <form role="form" action="http://localhost:24807/MyCloudProject-war/createAccount" method="GET">
+				
+						
+                                            <div class="form-group">
+                                                <input type="radio" name="account_type" value="savings" checked> Savings<br>
+                                                <input type="radio" name="account_type" value="current"> Current <br>
+                                            </div>
+						<div class="form-group">
+                                                    <input type="text" name="account_pin"  maxlength="4" class="form-control"  placeholder="Enter the 4 digit PIN" required>
+						</div>						
+
+						<div class="form-group">
+							<input type="number" name="initial_amount" class="form-control" placeholder="Initial Amount">
+						</div>						
+
+				<div class="modal-footer">
+                                    <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+				</div>
 					</form>
 				</div>
 

@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Contact Us</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;
+  }
+  .bg-2 { 
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;
+  }
+  .bg-3 { 
+      background-color: #ffffff; /* White */
+      color: #555555;
+  }
+  .bg-4 { 
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;
+  }
+  
+  #mynav{
+  width:100%;
+  position:fixed;
+  z-index:1000;}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  
+  <img src="banls/mybank.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="320" height="300">
+  <h3> My Bank. At your service.</h3>
+</div>
+
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <h3 class="margin" id="about">Achivements</h3>
+  <p>Listed in the best bank list of 2017.</p>
+</div>
+
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-4 text-center">    
+  <h3 class="margin" id="projects">CONTACT INFORMATION</h3><br>
+  <div class="row">
+  <a href="https://www.facebook.com/scorncer17">
+    <div class="col-sm-3">
+      <p>Yash Agrawal</p>
+      
+    </div>
+  </a>
+    
+    <a href="https://www.facebook.com/utkarsh.shekhar.73">
+    <div class="col-sm-3"> 
+      <p>Utkarsh Shekhar</p>
+      
+    </div>  
+    </a>
+    
+    <a href="https://www.facebook.com/aditya.aggarwal.9083">
+    <div class="col-sm-3"> 
+      <p>Aditya Aggarwal</p>
+      
+    </div>  
+    </a>
+    
+    
+    
+  </div>
+
+
+
+  
+
+<script>
+  $("#projects_link").click(function() {
+    
+       $('html, body').animate({
+        scrollTop: $("#projects").offset().top
+    }, 1200);
+  });
+$("#contact_link").click(function() {
+    
+       $('html, body').animate({
+        scrollTop: $("#contact").offset().top
+    }, 1200);
+  });
+$("#about_link").click(function() {
+    
+       $('html, body').animate({
+        scrollTop: $("#about").offset().top
+    }, 1200);
+  });
+</script>
+
+</body>
+</html>
+
