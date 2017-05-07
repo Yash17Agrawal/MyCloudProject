@@ -29,13 +29,11 @@ public class createAccount extends HttpServlet {
         int userId=Integer.parseInt((String)request.getSession().getAttribute("userId"));
         String accountType=(String)request.getParameter("account_type");
         Double amount;
-        System.out.println("check "+request.getParameter("initial_amount"));
-        if(request.getParameter("initial_amount") == null )
+        if(request.getParameter("initial_amount").isEmpty() )
             amount=0.0;
         else
             amount=Double.parseDouble(request.getParameter("initial_amount"));
         
-        System.out.println("yash"+ (String)request.getParameter("account_pin"));
         int pin=Integer.parseInt((String)request.getParameter("account_pin"));
         int result=obj.createNewAccount(userId, accountType, amount, pin);
         if(result==1)

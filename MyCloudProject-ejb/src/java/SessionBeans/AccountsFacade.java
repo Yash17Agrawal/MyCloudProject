@@ -6,6 +6,7 @@
 package SessionBeans;
 
 import EntityBeans.Accounts;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +21,8 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
     @PersistenceContext(unitName = "MyCloudProject-ejbPU")
     private EntityManager em;
 
+    @EJB
+    TransactionTableFacadeLocal obj;
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -38,6 +41,13 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
         ac.setPin(pin);
         ac.setAccountType(accountType);
         create(ac);
+        
+       /*if(initialAmount == 0)
+        {*/
+            int c=obj.transact(userId, userId, initialAmount);
+            if(c!=1)
+                return 0;
+        /*}*/
         return 1;
     }
 }
