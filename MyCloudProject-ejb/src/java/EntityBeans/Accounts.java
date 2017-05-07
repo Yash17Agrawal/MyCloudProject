@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Accounts.findByAccountId", query = "SELECT a FROM Accounts a WHERE a.accountId = :accountId")
     , @NamedQuery(name = "Accounts.findByAmount", query = "SELECT a FROM Accounts a WHERE a.amount = :amount")
     , @NamedQuery(name = "Accounts.findByPin", query = "SELECT a FROM Accounts a WHERE a.pin = :pin")
-    , @NamedQuery(name = "Accounts.findByLoan", query = "SELECT a FROM Accounts a WHERE a.loan = :loan")})
+    , @NamedQuery(name = "Accounts.findByLoanId", query = "SELECT a FROM Accounts a WHERE a.loanId = :loanId")})
 public class Accounts implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,8 +52,8 @@ public class Accounts implements Serializable {
     private Double amount;
     @Column(name = "pin")
     private Integer pin;
-    @Column(name = "loan")
-    private Double loan;
+    @Column(name = "loan_id")
+    private Integer loanId;
 
     public Accounts() {
     }
@@ -102,12 +102,12 @@ public class Accounts implements Serializable {
         this.pin = pin;
     }
 
-    public Double getLoan() {
-        return loan;
+    public Integer getLoanId() {
+        return loanId;
     }
 
-    public void setLoan(Double loan) {
-        this.loan = loan;
+    public void setLoanId(Integer loanId) {
+        this.loanId = loanId;
     }
 
     @Override

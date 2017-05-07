@@ -34,7 +34,7 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
         Accounts ac=new Accounts();
         ac.setUserId(userId);
         ac.setAmount(initialAmount);
-        ac.setLoan(null);
+        //ac.setLoan(null);
         ac.setPin(pin);
         ac.setAccountType(accountType);
         create(ac);
