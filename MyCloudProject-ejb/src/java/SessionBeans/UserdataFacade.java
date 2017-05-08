@@ -7,6 +7,7 @@ package SessionBeans;
 
 import EntityBeans.Userdata;
 import java.util.ArrayList;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +19,9 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UserdataFacade extends AbstractFacade<Userdata> implements UserdataFacadeLocal {
 
+    @EJB 
+    AccountsFacadeLocal accobj;
+    
     @PersistenceContext(unitName = "MyCloudProject-ejbPU")
     private EntityManager em;
    
@@ -63,8 +67,11 @@ public class UserdataFacade extends AbstractFacade<Userdata> implements Userdata
             obj.setVerificationNumber(verification_number);
             obj.setVerificationType(verification_type);
             obj.setStatus("active");
-            
             create(obj);
+            
+            int pin=(int)(Math.random()*9000)+1000;
+            if(accobj.createNewAccount(count(), "savings", Double.valueOf(0), pin)==0)
+                System.out.println("Error creation in creating account");
             return 1; 
         }
         

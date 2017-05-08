@@ -35,4 +35,5 @@ public interface AccountsFacadeLocal {
     public Integer getAccountnumber(int userid);
     public HashMap<Integer, ArrayList> getAccountDetails(int userid);
    public Double getAmount(int id);
+   public int set_Amount(int id,int factor,double change,int loan_id);
 }

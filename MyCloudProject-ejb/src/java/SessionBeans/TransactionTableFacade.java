@@ -54,52 +54,35 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
             loancheck=true;
         else
             loancheck=checkuserid(userIdFrom);
-    if((loancheck) && (checkuserid(userIdTo)) && (amt !=0.0 ||String.valueOf(amt) !=null) && (accobj.getAmount(userIdTo)-amt >=0 ))
+    if((loancheck) && (checkuserid(userIdTo)) && (amt !=0.0 ||String.valueOf(amt) !=null))
+    { double temp_amoiunt = 0;
+        if(userIdFrom==-1)
+        {
+            temp_amoiunt = amt + 10000;
+        }
+        else
+        {
+            temp_amoiunt = accobj.getAmount(userIdFrom);
+        }
+    if (temp_amoiunt-amt>=0)
     {
     TransactionTable tb=new TransactionTable();
     System.out.println("my details "+userIdFrom+"  "+userIdTo+"  "+amt);
     tb.setUserIdFrom(userIdFrom);
     tb.setUserIdTo(userIdTo);
     tb.setCurrentStatus("success");
-    tb.setDateTime(null);
+    java.util.Date dt = new java.util.Date();
+    /*java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String currentTime = sdf.format(dt);*/
+    tb.setDateTime(dt);
     tb.setAmount(amt);
     tb.setPaymentMode("online");
-    
-   /* boolean flag_useridFrom=false,flag_useridTo=false;
-    UserdataFacadeLocal obj=em.getReference(UserdataFacade.class, 1);
-    ArrayList<Userdata> userlist=new ArrayList(obj.findAll());
-    if(userIdFrom!=userIdTo)
-    {      
-    for(Userdata ud:userlist)
-        {
-            int temp=ud.getUserId().intValue();
-            System.out.println("hello yash"+temp);
-            if(temp==userIdFrom)
-            {
-                 flag_useridFrom=true;
-            }
-            else
-                if(temp==userIdTo)
-            {
-                flag_useridTo=true;
-            }
-                if(flag_useridFrom==true && flag_useridTo==true)
-            {
-                    create(tb);
-                    return 1;
-            }
-        }
-    }
-    
-    return 0;
-*/
-   create(tb);
+    create(tb);
    return 1;
 }
-    else
-    {
-        return 0;
     }
+       return 0;
+    
     }
     boolean checkuserid(int id)
     {

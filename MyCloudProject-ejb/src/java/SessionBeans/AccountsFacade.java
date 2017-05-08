@@ -50,12 +50,11 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
         ac.setAccountType(accountType);
         create(ac);
         
-       /*if(initialAmount == 0)
-        {*/
-            int c=obj.transact(userId, userId, initialAmount);
+    
+            int c=obj.transact(-1, userId, initialAmount);
             if(c!=1)
                 return 0;
-        /*}*/
+        
         return 1;
     }
      public Integer getAccountnumber(int userid)
@@ -100,5 +99,24 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
       {
           ArrayList<Accounts> arlist=(ArrayList < Accounts>)emf.createEntityManager().createNamedQuery("Accounts.findByAccountId").setParameter("account_id", id).getResultList();
           return arlist.get(0).getAmount();
+      }
+      public int set_Amount(int id,int factor,double change,int loan_id)
+      {
+          if(factor==1)
+          {
+              Accounts ac=find(id);
+              double tempAmount=ac.getAmount();
+              ac.setAmount(tempAmount + change );
+              if(loan_id >0)
+                  ac.setLoanId(loan_id);
+          }
+          else
+              if(factor==0)
+              {
+                   Accounts ac=find(id);
+                   double tempAmount=ac.getAmount();
+                   ac.setAmount(tempAmount - change );
+              }
+        return 1;  
       }
 }

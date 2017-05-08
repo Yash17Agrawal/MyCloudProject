@@ -24,6 +24,8 @@ public class LoanTableFacade extends AbstractFacade<LoanTable> implements LoanTa
 
     @EJB
     TransactionTableFacadeLocal transactionObj;
+    @EJB
+    AccountsFacadeLocal accobj;
     
     @Override
     protected EntityManager getEntityManager() {
@@ -44,6 +46,8 @@ public class LoanTableFacade extends AbstractFacade<LoanTable> implements LoanTa
         obj.setPrincipal(amount);
         obj.setRate(rate);
         create(obj);
+        //id, factor,change,loanid
+        accobj.set_Amount(userId, 1, amount, count());
         return 1;
     }
     public ArrayList<ArrayList<String>> allEntries(int account_id)
