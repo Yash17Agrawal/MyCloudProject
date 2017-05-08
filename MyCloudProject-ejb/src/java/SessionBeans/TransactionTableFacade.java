@@ -30,6 +30,8 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
     private EntityManager em;
     @EJB 
     UserdataFacadeLocal obj;
+    @EJB
+    AccountsFacadeLocal accobj;
     
      /*@Temporal(TemporalType.TIMESTAMP)
     private java.util.Date myDate;*/
@@ -46,12 +48,13 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
     @Override
     public int transact(int userIdFrom, int userIdTo, double amt) {
     
+        
         boolean loancheck;
         if(userIdFrom == -1)
             loancheck=true;
         else
             loancheck=checkuserid(userIdFrom);
-    if((loancheck) && (checkuserid(userIdTo)) && (amt !=0.0 ||String.valueOf(amt) !=null))
+    if((loancheck) && (checkuserid(userIdTo)) && (amt !=0.0 ||String.valueOf(amt) !=null) && (accobj.getAmount(userIdTo)-amt >=0 ))
     {
     TransactionTable tb=new TransactionTable();
     System.out.println("my details "+userIdFrom+"  "+userIdTo+"  "+amt);
@@ -61,6 +64,7 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
     tb.setDateTime(null);
     tb.setAmount(amt);
     tb.setPaymentMode("online");
+    
    /* boolean flag_useridFrom=false,flag_useridTo=false;
     UserdataFacadeLocal obj=em.getReference(UserdataFacade.class, 1);
     ArrayList<Userdata> userlist=new ArrayList(obj.findAll());
@@ -108,21 +112,32 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
         }
      return false;   
     }
-    public ArrayList<TransactionTable> trasactionHistory(int account_id)
-    {
-        ArrayList<TransactionTable> transactionlist=new ArrayList(findAll());
-        ArrayList<TransactionTable> myresult=new ArrayList<>();
-        for(TransactionTable obj:transactionlist)
-        {
-            if(account_id == obj.getUserIdFrom() || account_id == obj.getUserIdTo())
-            {
-                myresult.add(obj);
-            }
-        }
-        return myresult;
-    }
     public int getTotalentries()
     {
         return count();
+    }
+    @Override
+     public ArrayList<ArrayList<String>> trasactionHistory(int account_id)
+    {
+        ArrayList<TransactionTable> transactionlist=new ArrayList(findAll());
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        ArrayList<String> temp = new ArrayList();
+        for(TransactionTable obj:transactionlist)
+        {
+            temp.clear();
+            if(account_id == obj.getUserIdFrom() || account_id == obj.getUserIdTo())
+            {   
+                
+                temp.add(obj.getTransactionId().toString());
+                //temp.add(obj.getDateTime().toString());
+                temp.add(obj.getUserIdFrom().toString());
+                temp.add(obj.getUserIdTo().toString());
+                temp.add(obj.getAmount().toString());
+                System.out.println("here" + temp);
+                result.add(new ArrayList<>(temp));   
+            }
+        }
+        System.out.println("final result " + result); 
+        return result;
     }
 }

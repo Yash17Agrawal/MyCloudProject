@@ -74,7 +74,7 @@
 						
 
 						<div class="form-group">
-							<input type="text" name="userId" class="form-control" placeholder="Enter receiver's id.">
+							<input type="text" name="rcv_userId" class="form-control" placeholder="Enter receiver's id.">
 						</div>						
 
 						<div class="form-group">

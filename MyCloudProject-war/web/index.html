@@ -64,7 +64,15 @@ and open the template in the editor.
 				<!--body-->
 				<div class="modal-body" >
                                     <form role="form" action="http://localhost:24807/MyCloudProject-war/LoginSingupNew" method="POST">
-						<div class="form-group">
+					<p>Select type of login</p>
+						<div class="radio">
+  							<label><input type="radio" name="login_type" value="customer" checked="checked">Customer</label>
+						</div>
+						<div class="radio">
+  							<label><input type="radio" name="login_type" value="admin">Admin</label>
+						</div>
+							
+                                        <div class="form-group">
 							<input type="text" name="userId" class="form-control" placeholder="Username">
 						</div>
 						<div class="form-group">
@@ -99,7 +107,9 @@ and open the template in the editor.
 				<!--body-->
 				<div class="modal-body">
                                     <form role="form" action="http://localhost:24807/MyCloudProject-war/LoginSingupNew" method="post">
-						<div class="form-group">
+						
+                                                
+                                                <div class="form-group">
 							<input type="text" name="username" class="form-control" placeholder="Username">
 						</div>
 						<div class="form-group">

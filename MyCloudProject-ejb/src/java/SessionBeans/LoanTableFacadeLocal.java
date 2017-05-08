@@ -6,6 +6,7 @@
 package SessionBeans;
 
 import EntityBeans.LoanTable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,4 +31,5 @@ public interface LoanTableFacadeLocal {
 
     int count();
     public int takeLoan(int userId,Double amount,Double time,Double rate);
+    public ArrayList<ArrayList<String>> allEntries(int account_id);
 }

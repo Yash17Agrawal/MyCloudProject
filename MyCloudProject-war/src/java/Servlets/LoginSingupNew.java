@@ -9,6 +9,7 @@ package Servlets;
          
 
 import SessionBeans.AccountsFacadeLocal;
+import SessionBeans.AdminTableFacadeLocal;
 import SessionBeans.UserdataFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,6 +29,8 @@ public class LoginSingupNew extends HttpServlet {
             UserdataFacadeLocal obj;
             @EJB 
             AccountsFacadeLocal accobj;
+            @EJB
+            AdminTableFacadeLocal adminobj;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,11 +43,24 @@ public class LoginSingupNew extends HttpServlet {
                 // For Login
             String userId=request.getParameter("userId");
             String password=request.getParameter("password");
-            int result=obj.login(userId,password);
+            
+            int result;
+            if(request.getParameter("login_type").equals("customer"))
+                    result=obj.login(userId,password);
+            else
+                    result=adminobj.login(userId,password);
             
             if(result==1)
             {
-                //Successful Login
+                System.out.println(request.getParameter("login_type").equals("admin"));
+                if(request.getParameter("login_type").equals("admin"))
+                {
+                HttpSession session=request.getSession();
+                session.setAttribute("userId",userId);
+                response.sendRedirect("http://localhost:24807/MyCloudProject-war/adminservlet");
+                return ;
+                }
+                //Successful Login      
                 int accountnumber=accobj.getAccountnumber(Integer.parseInt(userId));
                 HttpSession session=request.getSession();
                 session.setAttribute("userId",userId);
@@ -84,8 +100,6 @@ public class LoginSingupNew extends HttpServlet {
                      response.sendRedirect("http://localhost:24807/MyCloudProject-war/LoginSignup/ErrorSignup.jsp");
                 }
             }
-            //
-           
         }
     
 

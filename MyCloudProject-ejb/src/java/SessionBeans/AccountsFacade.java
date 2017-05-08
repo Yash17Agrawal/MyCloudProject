@@ -7,10 +7,13 @@ package SessionBeans;
 
 import EntityBeans.Accounts;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 
 /**
  *
@@ -24,6 +27,10 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
 
     @EJB
     TransactionTableFacadeLocal obj;
+    
+    @PersistenceUnit(unitName = "MyCloudProject-ejbPU")
+    EntityManagerFactory emf;
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -63,4 +70,35 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
             }
             return null;
         }
+     public HashMap<Integer, ArrayList> getAccountDetails(int userid)
+     {
+         ArrayList<ArrayList<String>> final_list = new ArrayList();
+         ArrayList<Accounts> obj = new ArrayList<>(findAll());
+         HashMap<Integer, ArrayList> hmap = new HashMap();
+         for (Accounts temp: obj)
+         {
+             if (temp.getUserId() == userid)
+             {
+                 ArrayList<String> temp_account = new ArrayList();
+                 String acc_id = temp.getAccountId().toString();
+                 String acc_amount = temp.getAmount().toString();
+                 String acc_type = temp.getAccountType();
+                 
+                 temp_account.add(acc_id);
+                 temp_account.add(acc_type);
+                 temp_account.add(acc_amount);
+                 
+                 final_list.add(temp_account);
+                 temp_account.clear();
+             }
+         }
+         hmap.put(userid, final_list);
+         return hmap;
+     }
+     
+      public Double getAmount(int id)
+      {
+          ArrayList<Accounts> arlist=(ArrayList < Accounts>)emf.createEntityManager().createNamedQuery("Accounts.findByAccountId").setParameter("account_id", id).getResultList();
+          return arlist.get(0).getAmount();
+      }
 }

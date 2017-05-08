@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import SessionBeans.AccountsFacadeLocal;
 import SessionBeans.TransactionTableFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 public class Transaction extends HttpServlet {
 
         @EJB
-        TransactionTableFacadeLocal obj;     
+        TransactionTableFacadeLocal obj;  
+        @EJB 
+        AccountsFacadeLocal accobj;
         protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -36,9 +39,9 @@ public class Transaction extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-            Integer id=Integer.parseInt((String)request.getSession().getAttribute("userId"));
+            Integer id=Integer.parseInt((String)request.getParameter("rcv_userId"));
             Double amt=Double.parseDouble(request.getParameter("amount"));
-            int currentaccountId=(Integer)request.getSession().getAttribute("accountNumber");
+            int currentaccountId=accobj.getAccountnumber((Integer)request.getSession().getAttribute("accountNumber"));
             int result=obj.transact(currentaccountId,id,amt);
             System.out.println( currentaccountId+" "+ id+ " "+ amt);
             out.println("<h1>Servlet Transaction at " + result + "</h1>");

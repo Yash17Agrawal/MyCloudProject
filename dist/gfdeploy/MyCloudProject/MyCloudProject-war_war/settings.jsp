@@ -7,8 +7,9 @@
 		Settings		
 	</title>
 
-<%! @EJB 
-    UserdataFacadeLocal obj;
+<%! 
+    @EJB 
+    UserdataFacadeLocal objyash;
 %>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +53,11 @@
   
   <img src="user1.png" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="320" height="300">
   <%System.out.println((String)session.getAttribute("userId")+"wow"); %>
-  <h3>DEFAULt</h3>
+  <h3><% if(objyash == null )
+      System.out.println("null yash");
+  else
+      System.out.println("ok ");
+//objgetname((String)session.getAttribute("userId"))%></h3>
   <!--<%//obj.getname((String)session.getAttribute("userId"));%>-->
 </div>
 

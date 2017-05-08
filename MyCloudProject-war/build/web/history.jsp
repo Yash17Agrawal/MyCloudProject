@@ -1,3 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="java.lang.String"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="SessionBeans.TransactionTableFacadeLocal"%>
+<%@page import="javax.ejb.EJB"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +16,10 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+ 
+  <%!
+     @EJB
+  TransactionTableFacadeLocal obj;%>
   <style type="text/css">
 
   p {font-size: 16px;}
@@ -76,13 +84,27 @@
 <!-- HERE YOU'LL APPLY FOR LOOP WITH THE DETAILS FILLED IN-->
 
 <div class="container-fluid bg-3 text-center">
-	
+	<%/*int id=Integer.parseInt((String)request.getSession().getAttribute("userId"));
+            obj.
+            ArrayList<ArrayList<String>> arlist=new ArrayList<ArrayList<String>>(obj.trasactionHistory(id));*/
+           // for(ArrayList temp:new ArrayListrequest.getAttribute("arlist"))
+            //{
+              //  System.out.println(temp);*/
+            
+    %>
+        <% 
+           for(ArrayList<String> temp:(ArrayList<ArrayList<String>>)request.getAttribute("arlist"))
+           {
+               
+        %>
 	<div class="row">
-		<div class="col-md-3" > YASH</div>
-		<div class="col-md-3" > ADITYA</div>
-		<div class="col-md-3" > 10000</div>
-		<div class="col-md-3" > 8/5/2017</div>
+		<div class="col-md-3" ><%=temp.get(0)%> </div>
+                <div class="col-md-3" ><%=temp.get(1)%></div>
+		<div class="col-md-3" ><%=temp.get(2)%> </div>
+		<!--<div class="col-md-3" > /5/2017</div>-->
 	</div>
+        <% } %>
+             
 </div>
 
 <!-- END OF LOOP-->

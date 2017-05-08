@@ -8,6 +8,7 @@ package Servlets;
 import SessionBeans.TransactionTableFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +36,17 @@ public class TransactionHistory extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             int id=Integer.parseInt((String)request.getSession().getAttribute("userId"));
-            out.println("<h1>Servlet TransactionHistory at " + obj.trasactionHistory(id) + "</h1>");
+            ArrayList<ArrayList<String>> arlist=new ArrayList<ArrayList<String>>(obj.trasactionHistory(id));
+            /*for(ArrayList temp:arlist)
+            {
+                System.out.println("here2");
+                
+            
+                    out.println("<h1>Servlet TransactionHistory at " + temp + "</h1>");
+                
+            } */
+            request.setAttribute("arlist", arlist);
+            request.getRequestDispatcher("history.jsp").forward(request, response);
             out.println("</body>");
             out.println("</html>");
         }

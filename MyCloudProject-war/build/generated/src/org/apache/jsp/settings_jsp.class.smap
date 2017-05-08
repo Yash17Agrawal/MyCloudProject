@@ -1,0 +1,18 @@
+SMAP
+settings_jsp.java
+JSP
+*S JSP
+*F
++ 0 settings.jsp
+settings.jsp
+*L
+1,10:50
+11,3:13
+13,42:59
+55:101,3
+56:104
+56,5:105
+60:110
+61:111,3
+62,38:114
+*E

@@ -6,6 +6,8 @@
 package SessionBeans;
 
 import EntityBeans.AdminTable;
+import EntityBeans.Userdata;
+import java.util.ArrayList;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +30,23 @@ public class AdminTableFacade extends AbstractFacade<AdminTable> implements Admi
     public AdminTableFacade() {
         super(AdminTable.class);
     }
-    
+    public int login(String userId,String password)
+    {
+        Boolean flag=false;
+        ArrayList<AdminTable> userlist=new ArrayList(findAll());
+        for(AdminTable ud:userlist)
+        {
+            Integer userid=Integer.parseInt(userId);
+            if(ud.getAdminId().equals(userid) && ud.getAdminPassword().equals(password))
+            {
+                 flag=true;
+                 break;
+            }
+        }
+        if(flag)
+        {
+            return 1;
+        }
+        return 0;
+    }
 }

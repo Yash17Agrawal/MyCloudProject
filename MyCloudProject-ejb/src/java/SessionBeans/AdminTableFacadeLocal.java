@@ -29,5 +29,6 @@ public interface AdminTableFacadeLocal {
     List<AdminTable> findRange(int[] range);
 
     int count();
+    public int login(String userid,String password);
     
 }

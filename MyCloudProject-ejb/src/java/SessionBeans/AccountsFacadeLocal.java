@@ -6,6 +6,8 @@
 package SessionBeans;
 
 import EntityBeans.Accounts;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,4 +33,6 @@ public interface AccountsFacadeLocal {
     int count();
     public int createNewAccount(int userId,String accountType,Double initialAmount,int pin);
     public Integer getAccountnumber(int userid);
+    public HashMap<Integer, ArrayList> getAccountDetails(int userid);
+   public Double getAmount(int id);
 }
