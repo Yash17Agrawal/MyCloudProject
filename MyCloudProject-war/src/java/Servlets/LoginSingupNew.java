@@ -79,6 +79,7 @@ public class LoginSingupNew extends HttpServlet {
             else
             {
                  //For Registration
+                //String password=request.getParameter("password");
                 String username=request.getParameter("username");
                 String password=request.getParameter("password");
                 String verification_type=request.getParameter("verification_type");
@@ -91,8 +92,13 @@ public class LoginSingupNew extends HttpServlet {
                 String security_question=request.getParameter("security_question");
                 String security_answer=request.getParameter("security_answer");
                 int result=obj.signup(username, password, verification_type, verification_number, security_question, security_answer);
-                if(result==1)
+                if(result>0)
                 {
+                  
+                int accountnumber=accobj.getAccountnumber(result);
+                HttpSession session=request.getSession();
+                session.setAttribute("userId",result);
+                session.setAttribute("accountNumber",accountnumber);    
                 response.sendRedirect("http://localhost:24807/MyCloudProject-war/home.jsp");
                 }
                else

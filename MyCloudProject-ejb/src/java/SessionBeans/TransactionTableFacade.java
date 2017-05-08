@@ -77,6 +77,8 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
     tb.setDateTime(dt);
     tb.setAmount(amt);
     tb.setPaymentMode("online");
+    accobj.set_Amount(userIdTo, 1, amt, 0);
+    accobj.set_Amount(userIdFrom, 0, amt, 0);
     create(tb);
    return 1;
 }
@@ -111,11 +113,11 @@ public class TransactionTableFacade extends AbstractFacade<TransactionTable> imp
             if(account_id == obj.getUserIdFrom() || account_id == obj.getUserIdTo())
             {   
                 
-                temp.add(obj.getTransactionId().toString());
-                //temp.add(obj.getDateTime().toString());
+               // temp.add(obj.getTransactionId().toString());
                 temp.add(obj.getUserIdFrom().toString());
-                temp.add(obj.getUserIdTo().toString());
+                 temp.add(obj.getUserIdTo().toString());
                 temp.add(obj.getAmount().toString());
+                temp.add(obj.getDateTime().toString());
                 System.out.println("here" + temp);
                 result.add(new ArrayList<>(temp));   
             }

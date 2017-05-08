@@ -97,11 +97,15 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
      
       public Double getAmount(int id)
       {
-          ArrayList<Accounts> arlist=(ArrayList < Accounts>)emf.createEntityManager().createNamedQuery("Accounts.findByAccountId").setParameter("account_id", id).getResultList();
-          return arlist.get(0).getAmount();
+         // ArrayList<Accounts> arlist=(ArrayList < Accounts>)emf.createEntityManager().createNamedQuery("Accounts.findByAccountId").setParameter("account_id", id).getResultList();
+          
+          //return arlist.get(0).getAmount();
+          Accounts ab=find(id);
+          return ab.getAmount();
       }
       public int set_Amount(int id,int factor,double change,int loan_id)
       {
+          //Add amount
           if(factor==1)
           {
               Accounts ac=find(id);
@@ -111,11 +115,13 @@ public class AccountsFacade extends AbstractFacade<Accounts> implements Accounts
                   ac.setLoanId(loan_id);
           }
           else
+              // Subtract
               if(factor==0)
               {
                    Accounts ac=find(id);
                    double tempAmount=ac.getAmount();
                    ac.setAmount(tempAmount - change );
+                   
               }
         return 1;  
       }

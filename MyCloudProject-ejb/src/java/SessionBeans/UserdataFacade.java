@@ -72,7 +72,7 @@ public class UserdataFacade extends AbstractFacade<Userdata> implements Userdata
             int pin=(int)(Math.random()*9000)+1000;
             if(accobj.createNewAccount(count(), "savings", Double.valueOf(0), pin)==0)
                 System.out.println("Error creation in creating account");
-            return 1; 
+            return count(); 
         }
         
         public String getname(String id)

@@ -35,7 +35,7 @@ public class TransactionHistory extends HttpServlet {
             out.println("<title>Servlet TransactionHistory</title>");            
             out.println("</head>");
             out.println("<body>");
-            int id=Integer.parseInt((String)request.getSession().getAttribute("userId"));
+            int id=Integer.parseInt(String.valueOf(request.getSession().getAttribute("userId")));
             ArrayList<ArrayList<String>> arlist=new ArrayList<ArrayList<String>>(obj.trasactionHistory(id));
             /*for(ArrayList temp:arlist)
             {

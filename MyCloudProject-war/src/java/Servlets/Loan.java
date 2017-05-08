@@ -26,7 +26,7 @@ public class Loan extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      
+      try (PrintWriter out = response.getWriter()) {
         Double amount=Double.parseDouble(request.getParameter("principalAmount"));
 //        System.out.println(request.getParameter("time").substring(0,request.getParameter("time").indexOf(" ")));
         Double time=Double.parseDouble(request.getParameter("time"));
@@ -35,12 +35,24 @@ public class Loan extends HttpServlet {
         int result=obj.takeLoan(userId,amount,time,rate);
         
         if(result==1)
+        {
             System.out.println("Loan Success");
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Transaction</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Transaction Success  " + result + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+            
+        }
         else
             System.out.println("Loan Failure");
         
     }
-
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -52,12 +52,14 @@
 <div class="container-fluid bg-1 text-center">
   
   <img src="user1.png" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="320" height="300">
-  <%System.out.println((String)session.getAttribute("userId")+"wow"); %>
-  <h3><% if(objyash == null )
+  <%//System.out.println(String.valueOf(session.getAttribute("userId"))+"wow"); %>
+  <h3><% /*if(objyash == null )
       System.out.println("null yash");
-  else
+        //else
       System.out.println("ok ");
-//objgetname((String)session.getAttribute("userId"))%></h3>
+//objgetname((String)session.getAttribute("userId"))*/%>
+  Customer
+  </h3>
   <!--<%//obj.getname((String)session.getAttribute("userId"));%>-->
 </div>
 
