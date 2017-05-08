@@ -70,6 +70,7 @@ public class UserdataFacade extends AbstractFacade<Userdata> implements Userdata
         
         public String getname(String id)
         {
+            System.out.println("name check");
              ArrayList<Userdata> userlist=new ArrayList(findAll());
             for(Userdata ud:userlist)
         {
@@ -111,5 +112,19 @@ public class UserdataFacade extends AbstractFacade<Userdata> implements Userdata
         public ArrayList<Userdata> getAllusers()
         {
             return new ArrayList(findAll());
+        }
+        public int updateDetails(String id,String newPassword,String currentPassword)
+        {
+            System.out.println(id+ " "+ newPassword+ " "+currentPassword);
+            Userdata userItem=find(Integer.parseInt(id));
+            if(userItem.getPassword().equals(currentPassword))
+            {
+                if(!newPassword.isEmpty())
+                {
+                    userItem.setPassword(newPassword);
+                    return 1;
+                }
+            }
+            return 0;
         }
 }

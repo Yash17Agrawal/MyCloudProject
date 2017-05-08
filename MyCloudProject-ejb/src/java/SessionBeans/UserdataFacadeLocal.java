@@ -37,4 +37,5 @@ public interface UserdataFacadeLocal {
             public int getVerificationNumber(String id);
             public String getname(String id);
 public ArrayList<Userdata> getAllusers();
+public int updateDetails(String id,String newPassword,String currentPassword);
 }

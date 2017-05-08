@@ -35,23 +35,15 @@ public class Profile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Profile</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            String id=(String)request.getSession().getAttribute("userId");
+        System.out.println(((String)request.getSession().getAttribute("userId")+request.getParameter("new_pwd")+request.getParameter("current_pwd")));
+        int result=obj.updateDetails((String)request.getSession().getAttribute("userId"),request.getParameter("new_pwd"),request.getParameter("current_pwd"));
+        if(result==1)
+        {
+            response.sendRedirect("http://localhost:24807/MyCloudProject-war/home.jsp");
             
-            out.println("<h1>Servlet Profile at </h1>");
-            out.println("<h2>Name "+obj.getname(id)+"</h2><br>");
-             out.println("<h2>Verification Type "+obj.getVerificationType(id)+"</h2><br>");
-              out.println("<h2>Verification Number"+obj.getVerificationNumber(id) +"</h2><br>");
-            out.println("</body>");
-            out.println("</html>");
         }
+        else
+            response.sendRedirect("http://localhost:24807/MyCloudProject-war/settings.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

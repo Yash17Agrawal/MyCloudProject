@@ -43,7 +43,7 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toogle" data-toggle="dropdown">My Profile <span class="caret"> </span></a>
 					<ul class="dropdown-menu">
-						<li ><a href="http://localhost:24807/MyCloudProject-war/Profile">Settings</a></li>
+						<li ><a href="http://localhost:24807/MyCloudProject-war/settings.jsp">Settings</a></li>
 						<li ><a href="http://localhost:24807/MyCloudProject-war/TransactionHistory">View History</a></li>
 						<li ><a href="http://localhost:24807/MyCloudProject-war/Logout">Logout</a></li>					
 					</ul>
